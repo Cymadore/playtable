@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="min-w-[800px] min-h-screen bg-white h-full">
-        <img src="https://cafeptthumb-phinf.pstatic.net/MjAyNDAxMDZfMTcw/MDAxNzA0NTQ1MjI4NDg4.d6MwXS6truhIDsSc1534x2-gLzALd7TnfzOE0VzTiyEg.8rpAkBGA5MyAzygP4OgabL6ulIjAY97lIrqrGDubY8Qg.JPEG/output_2472097443.jpg" className="w-full text-center" />
+        <img src="https://storage.googleapis.com/playtablestorage/siteimg/output_2472097443.jpg" className="max-w-[800px] p-5 w-full text-center" />
         <ResultList />
       </div>
       {/* <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
