@@ -18,7 +18,7 @@ export default function ContentsProvider({ children }) {
 //     );
 //   }
   return (
-    <div className="w-full mx-body bg-slate-400 scrollbar-hide mobile:pt-[50px] pb-[60px]">
+    <div className="w-full mx-body bg-slate-400 scrollbar-hide">
       {children}
     </div>
   );

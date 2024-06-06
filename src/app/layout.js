@@ -4,6 +4,7 @@ import Head from "./components/layout/Head";
 import BodyProvider from "./components/home/BodyProvider";
 // import Providers from "./components/provider/SessionProviders";
 import ContentsProvider from "./components/home/ContentsProvider";
+import MenuPop from "./components/home/MenuPop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <BodyProvider>
         <Head />
+        <MenuPop />
         {/* <Providers> */}
           <ContentsProvider>{children}</ContentsProvider>
         {/* </Providers> */}
