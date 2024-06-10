@@ -30,7 +30,7 @@ export default function ClubMap({ clubAddress, isMobile }) {
     <div className="z-10">
       <div
         id="map"
-        className={`w-full ${isMobile ? "h-44" : "h-96"} z-10`}
+        className={`w-full ${isMobile ? "h-44" : "h-96"} z-10 border-2 border-slate-400`}
       ></div>
     </div>
   );
