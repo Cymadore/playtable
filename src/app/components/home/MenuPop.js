@@ -9,7 +9,7 @@ export default function MenuPop() {
 
     if(!isOpen) return;
     return(
-        <div className="absolute top-0 left-0 h-full w-[200px] bg-green-100 z-10">
+        <div className="absolute top-0 left-0 h-full w-[300px] bg-green-100 z-10">
             <div className="relative w-full h-full p-5">
                 <div className="absolute top-2 right-2"><IoChevronBack size={30} className="font-bold" onClick={() => setIsOpen(false)}/></div>
                 <div className="text-2xl font-extrabold pb-5">메뉴</div>
