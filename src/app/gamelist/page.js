@@ -8,7 +8,7 @@ export default function page() {
   let content = (
     <div className="">
       {data?.map((item, index) => (
-        <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "mb-4 mr-4"} />
+        <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "mr-4"} />
       ))}
     </div>
   )
