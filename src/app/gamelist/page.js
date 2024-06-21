@@ -20,11 +20,6 @@ export default function page() {
       ))}
     </div>
   )
-  if (isLoading) {
-    return <div className="min-h-[1080px] bg-white"></div>;
-  } else if (error) {
-    return <p>{error.message}</p>;
-  }
   return (
     <main className="flex min-h-screen flex-col">
       <div className="w-full min-h-screen bg-white h-full item-center">
