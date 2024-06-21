@@ -1,16 +1,18 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useRef, useState } from "react";
+// import useSWR from "swr";
 import gamelist from "@/app/components/gamelist/gamelist.json"
 import GameCard from "../components/gamelist/GameCard";
-import useSWR from "swr";
 
 export default function page() {
-  const cacheKey = `/gamelist`;
-  const getData = () => {
-    return gamelist
-  }
-  const { isLoading, error, data, mutate } = useSWR(cacheKey, getData
-  );
+  const data = gamelist;
+  // const cacheKey = `/gamelist`;
+  // const getData = () => {
+  //   const data = gamelist;
+  //   return data;
+  // }
+  // const { isLoading, error, data, mutate } = useSWR(cacheKey, getData
+  // );
   let content = (
     <div className="">
       {data?.map((item, index) => (
