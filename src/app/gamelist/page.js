@@ -1,5 +1,5 @@
 "use client"
-import Image from "next/image";
+import React from "react";
 import gamelist from "@/app/components/gamelist/gamelist.json"
 import GameCard from "../components/gamelist/GameCard";
 import useSWR from "swr";
