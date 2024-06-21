@@ -2,9 +2,15 @@
 import Image from "next/image";
 import gamelist from "@/app/components/gamelist/gamelist.json"
 import GameCard from "../components/gamelist/GameCard";
+import useSWR from "swr";
 
 export default function page() {
-  const data = gamelist;
+  const cacheKey = `/gamelist`;
+  const getData = () => {
+    return gamelist
+  }
+  const { isLoading, error, data, mutate } = useSWR(cacheKey, getData
+  );
   let content = (
     <div className="">
       {data?.map((item, index) => (
@@ -12,6 +18,11 @@ export default function page() {
       ))}
     </div>
   )
+  if (isLoading) {
+    return <div className="min-h-[1080px] bg-white"></div>;
+  } else if (error) {
+    return <p>{error.message}</p>;
+  }
   return (
     <main className="flex min-h-screen flex-col">
       <div className="w-full min-h-screen bg-white h-full item-center">
