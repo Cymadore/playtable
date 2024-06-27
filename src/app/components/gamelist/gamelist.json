@@ -1,8 +1,8 @@
 [
-    {"id":0, "name":"워해머40K", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/Boltaction.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
+    {"id":0, "name":"워해머40K", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/WHM40K.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
     {"id":1, "name":"워해머 에이지 오브 지그마", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/AOS.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
     {"id":2, "name":"워해머40K : 킬팀", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/Killteam.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
-    {"id":3, "name":"워해머 AoS : 워크라이", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/Boltaction.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
+    {"id":3, "name":"워해머 AoS : 워크라이", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/Warcry.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
     {"id":4, "name":"워머신", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/warmachine.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
     {"id":5, "name":"말리폭스", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/Malifaux.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
     {"id":6, "name":"배틀테크 : 알파스트라이크", "img":"https://storage.googleapis.com/playtablestorage/siteimg/gamethumbnails/battletech.jpg","count":"낮음","text":"test text","rent":[],"point":1000},
