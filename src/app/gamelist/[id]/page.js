@@ -14,12 +14,20 @@ export default function page({params}) {
             <img src={data.img} className="max-w-[800px] w-full text-center" />
           </div>
           <div className="text-left">
-            <div className="flex text-center">
-              <h2 className="flex-1">플레이 빈도수 : {data.count}</h2>
-              <h2 className="flex-1">대여용 아미 : {data.rent.length?"준비됨":"준비된 아미 없음"}</h2>
-              <h2 className="flex-1">게임 규모 : {data.point}</h2>
+            <div className="flex text-center mb-5">
+              <div className="flex-1 text-center p-2 bg-slate-200 rounded-xl">
+                <h2 className="font-bold">플레이 빈도수 : {data.count}</h2>
+              </div>
+              <div className="flex-1 text-center p-2 bg-slate-200 mx-4 rounded-xl">
+                <h2 className="font-bold">대여용 아미 : {data.rent.length?"준비됨":"준비된 아미 없음"}</h2>
+              </div>
+              <div className="flex-1 text-center p-2 bg-slate-200 rounded-xl">
+                <h2 className="font-bold">게임 규모 : {data.point}</h2>
+              </div>
             </div>
-            <h2>{data.text}</h2>
+            <div className="bg-slate-200 rounded-2xl p-5">
+              <h2>{data.text}</h2>
+            </div>            
           </div>
         </div>
       </div>
