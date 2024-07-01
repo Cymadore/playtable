@@ -14,8 +14,8 @@ export default function page({params}) {
           <div className="text-left max-w-full max-h-">
             <img src={data.img} className="max-w-[800px] w-full text-center" />
           </div>
-          <div className="text-left">
-            <div className="flex text-center mb-5">
+          <div className="text-left space-y-5">
+            <div className="flex text-center">
               <div className="flex-1 text-center p-2 bg-slate-200 rounded-xl">
                 <h2 className="font-bold">플레이 빈도수 : {data.count}</h2>
               </div>
@@ -29,7 +29,7 @@ export default function page({params}) {
             <div className="bg-slate-200 rounded-2xl p-5">
               <h2>{data.text}</h2>
             </div>
-            <Rental data={data.rent} />          
+            <Rental data={data.rent}  />          
           </div>
         </div>
       </div>

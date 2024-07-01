@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Rental({data}) {
   let rent;
+  console.log(data)
   if (data.length) {
     rent = (
       <Swiper
@@ -25,9 +26,10 @@ export default function Rental({data}) {
     )
   }
 
-  if (data) {
+  if (data.length) {
     return (
       <div className="flex-col space-y-4">
+        <h1 className="text-xl font-bold">대여 아미 목록</h1>
         <div className="overflow-scroll w-full no-scrollbar">{rent}</div>
       </div>
     );
