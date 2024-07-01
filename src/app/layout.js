@@ -5,6 +5,7 @@ import BodyProvider from "./components/home/BodyProvider";
 // import Providers from "./components/provider/SessionProviders";
 import ContentsProvider from "./components/home/ContentsProvider";
 import MenuPop from "./components/home/MenuPop";
+import "swiper/css";
 
 const inter = Inter({ subsets: ["latin"] });
 

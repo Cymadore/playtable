@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image";
 import gamelist from "@/app/components/gamelist/gamelist.json"
+import Rental from "@/app/components/gamelist/Rental";
 
 export default function page({params}) {
   const data = gamelist[params.id];
@@ -22,12 +23,13 @@ export default function page({params}) {
                 <h2 className="font-bold">대여용 아미 : {data.rent.length?"준비됨":"준비된 아미 없음"}</h2>
               </div>
               <div className="flex-1 text-center p-2 bg-slate-200 rounded-xl">
-                <h2 className="font-bold">게임 규모 : {data.point}</h2>
+                <h2 className="font-bold">게임 규모 : {data.point?data.point:'고정'}</h2>
               </div>
             </div>
             <div className="bg-slate-200 rounded-2xl p-5">
               <h2>{data.text}</h2>
-            </div>            
+            </div>
+            <Rental data={data.rent} />          
           </div>
         </div>
       </div>
