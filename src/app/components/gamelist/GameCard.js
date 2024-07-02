@@ -1,11 +1,17 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 
 export default function GameCard({ props, className }) {
     const data = props;
-    console.log(data.img)
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        setIsLoading(false);
+      }, [props]);
+    if(isLoading) {
+        return;
+    }
     return (
         <div className={`inline-block ${className} mb-4 max-w-[372px] `}>
             <Link href={`/gamelist/${data.id}`} className={`relative max-h-[240px] bg-slate-400 overflow-hidden rounded-lg bg-center flex flex-col`}>

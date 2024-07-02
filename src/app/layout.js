@@ -6,6 +6,7 @@ import BodyProvider from "./components/home/BodyProvider";
 import ContentsProvider from "./components/home/ContentsProvider";
 import MenuPop from "./components/home/MenuPop";
 import "swiper/css";
+import Footer from "./components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         {/* <Providers> */}
           <ContentsProvider>{children}</ContentsProvider>
         {/* </Providers> */}
+        <Footer />
       </BodyProvider>
     </html>
   );
