@@ -12,3 +12,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model gamelist {
+  id        Int      @id @default(autoincrement())
+  name  String @unique
+  img String
+  count String
+  text String
+  rent String[]
+  point String
+  createdAt      DateTime @default(now())
+}
