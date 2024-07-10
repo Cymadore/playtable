@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import useMenuPop from "@/app/lib/store/menupop";
+import Link from "next/link";
 
 
 const Head = () => {
@@ -13,9 +14,9 @@ const Head = () => {
                 <div className="d cursor-pointer">
                     <IoIosMenu size={25} className="" onClick={() => setIsOpen(true)}/>
                 </div>
-                <div className="flex-1">
+                <Link href="/" className="flex-1" onClick={() => setIsOpen(false)}>
                     <h1 className="text-2xl font-bold">플레이테이블</h1>
-                </div>                
+                </Link>                
             </div>
         </div>
     )
