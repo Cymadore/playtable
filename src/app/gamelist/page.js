@@ -6,26 +6,22 @@ import GameCard from "../components/gamelist/GameCard";
 import { endPoint, getGamelist } from "@/app/lib/gamelist";
 
 
-export default function page() {
-  // const data = gamelist;
+export default function Page() {
   const cacheKey = endPoint;
-  // const getData = () => {
-  //   const data = gamelist;
-  //   return data;
-  // }
-  const { isLoading, error, data, mutate } = useSWR(cacheKey, ()=> getGamelist()
-  );
-  let content = (
-    <div className="">
-      {data?.map((item, index) => (
-        <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "md:mr-4"} />
-      ))}
-    </div>
-  )
+  const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
+  let content
   if (isLoading) {
     return <div className="min-h-[1080px] bg-white"></div>;
   } else if (error) {
     return <p>{error.message}</p>;
+  } else {
+    content = (
+      <div className="">
+        {data?.map((item, index) => (
+          <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "md:mr-4"} />
+        ))}
+      </div>
+    )
   }
   return (
     <main className="flex min-h-screen flex-col">
