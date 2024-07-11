@@ -1,13 +1,11 @@
-"use client";
+'use client';
 import React from "react";
 import useSWR from "swr";
 // import gamelist from "@/app/components/gamelist/gamelist.json"
 import GameCard from "../components/gamelist/GameCard";
-import { endPoint, getGamelist } from "@/app/lib/gamelist";
+import { endPoint as cacheKey, getGamelist } from "@/app/lib/gamelist";
 
-
-export default function page() {
-  const cacheKey = endPoint;
+export default function Page() {
   const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
   console.log(data)
   let content
@@ -17,7 +15,7 @@ export default function page() {
     return <p>{error.message}</p>;
   } else {
     content = (
-      <div className="">
+      <div className="">useswrre
         {data?.map((item, index) => (
           <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "md:mr-4"} />
         ))}
