@@ -8,12 +8,12 @@ import { endPoint, getGamelist } from "@/app/lib/gamelist";
 
 export default function page() {
   // const data = gamelist;
-  const cacheKey = `/gamelist`;
+  const cacheKey = endPoint;
   // const getData = () => {
   //   const data = gamelist;
   //   return data;
   // }
-  const { isLoading, error, data, mutate } = useSWR(cacheKey, getGamelist
+  const { isLoading, error, data, mutate } = useSWR(cacheKey, ()=> getGamelist()
   );
   let content = (
     <div className="">
