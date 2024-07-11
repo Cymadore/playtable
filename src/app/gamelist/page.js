@@ -7,7 +7,6 @@ import { endPoint as cacheKey, getGamelist } from "@/app/lib/gamelist";
 
 export default function Page() {
   const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
-  console.log(data)
   let content
   if (isLoading) {
     return <div className="min-h-[1080px] bg-white"></div>;
@@ -15,7 +14,7 @@ export default function Page() {
     return <p>{error.message}</p>;
   } else {
     content = (
-      <div className="">useswrre
+      <div className="">
         {data?.map((item, index) => (
           <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "md:mr-4"} />
         ))}
