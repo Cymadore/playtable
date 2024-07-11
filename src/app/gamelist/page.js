@@ -6,7 +6,7 @@ import GameCard from "../components/gamelist/GameCard";
 import { endPoint, getGamelist } from "@/app/lib/gamelist";
 
 
-export default function Page() {
+export default function page() {
   const cacheKey = endPoint;
   const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
   let content
