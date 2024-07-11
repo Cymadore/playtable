@@ -9,6 +9,7 @@ import { endPoint, getGamelist } from "@/app/lib/gamelist";
 export default function page() {
   const cacheKey = endPoint;
   const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
+  console.log(data)
   let content
   if (isLoading) {
     return <div className="min-h-[1080px] bg-white"></div>;
