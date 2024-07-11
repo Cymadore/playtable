@@ -13,8 +13,8 @@ export default function GameCard({ props, className }) {
         return;
     }
     return (
-        <div className={`inline-block ${className} mb-4 max-w-[372px] `}>
-            <Link href={`/gamelist/${data.id}`} className={`relative max-h-[240px] bg-slate-400 overflow-hidden rounded-lg bg-center flex flex-col`}>
+        <div className={`inline-block ${className} mb-4 w-[372px] `}>
+            <Link href={`/gamelist/${data.id}`} className={`relative h-[240px] bg-slate-400 overflow-hidden rounded-lg bg-center flex flex-col`}>
                 <div className="overflow-hidden flex-1 flex justify-center items-center">
                     <img src={data.img} className="text-center item-center"/>
                 </div>

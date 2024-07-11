@@ -4,7 +4,7 @@ import gamelist from "@/app/components/gamelist/gamelist.json"
 import Rental from "@/app/components/gamelist/Rental";
 
 export default function page({params}) {
-  const data = gamelist[params.id];
+  const data = gamelist[params.id-1];
   return (
     <main className="flex min-h-screen flex-col">
       <div className="w-full min-h-screen bg-white h-full item-center">

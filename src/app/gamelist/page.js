@@ -7,9 +7,6 @@ import { endPoint, getGamelist } from "@/app/lib/gamelist";
 
 
 export default function page() {
-  console.log(endPoint)
-  const temp = getGamelist();
-  console.log(temp)
   // const data = gamelist;
   const cacheKey = `/gamelist`;
   // const getData = () => {
