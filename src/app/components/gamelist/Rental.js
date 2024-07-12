@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export default function Rental({data}) {
   let rent;
   console.log(data)
+  console.log(data.length)
   if (data.length) {
     rent = (
       <Swiper
@@ -16,7 +17,7 @@ export default function Rental({data}) {
         {data.map((item, index) => (
           <SwiperSlide key={"rent" + index}>
             <div className="relative">
-                <img src={item.src} className=""/>
+                <img src={item.img} className=""/>
                 <p className="absolute bottom-2 inset-x-0 text-center font-bold text-white text-2xl text-shadow-2xl">{item.name}</p>
             </div>
             

@@ -6,7 +6,9 @@ import GameCard from "../components/gamelist/GameCard";
 import { endPoint as cacheKey, getGamelist } from "@/app/lib/gamelist";
 
 export default function Page() {
-  const { isLoading, error, data } = useSWR(cacheKey, getGamelist );
+  const { isLoading, error, data } = useSWR(cacheKey, getGamelist, {
+    onSuccess: (data) => data.sort((a, b) => a.id - b.id),
+  } );
   let content
   if (isLoading) {
     return <div className="min-h-[1080px] bg-white"></div>;

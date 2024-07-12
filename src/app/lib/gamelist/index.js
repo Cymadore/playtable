@@ -7,6 +7,11 @@ export const getGamelist = async () => {
   return response.data;
 };
 
+export const getGameData = async (url) => {
+  const response = await api.get(url);
+  return response.data;
+} 
+
 // export const getShopDistance = async (shop) => {
 //   console.log(shop)
 //   const response = await api.post(`${endPoint}/distance`, {shop});

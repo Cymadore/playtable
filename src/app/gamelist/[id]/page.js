@@ -2,9 +2,20 @@
 import Image from "next/image";
 import gamelist from "@/app/components/gamelist/gamelist.json"
 import Rental from "@/app/components/gamelist/Rental";
+import useSWR from "swr";
+import { endPoint as cacheKey, getGameData } from "@/app/lib/gamelist";
+
 
 export default function page({params}) {
-  const data = gamelist[params.id-1];
+  // const data = gamelist[params.id-1];
+  const url = `${cacheKey}/${params.id}`
+  const { isLoading, error, data } = useSWR(url, (url)=>getGameData(url));
+  console.log(data)
+  if (isLoading) {
+    return <div className="min-h-[1080px] bg-white"></div>;
+  } else if (error) {
+    return <p>{error.message}</p>;
+  }
   return (
     <main className="flex min-h-screen flex-col">
       <div className="w-full min-h-screen bg-white h-full item-center">

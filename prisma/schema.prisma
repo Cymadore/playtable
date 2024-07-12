@@ -14,12 +14,21 @@ datasource db {
 }
 
 model gamelist {
-  id        Int      @id @default(autoincrement())
+  id  Int @id @default(autoincrement())
   name  String @unique
   img String
   count String
   text String
-  rent String[]
+  rent rental[]
   point String
   createdAt      DateTime @default(now())
+}
+
+model rental {
+  id  Int @id @unique @default(autoincrement())
+  name String 
+  img String
+  gameid Int
+  gamelist gamelist @relation(fields: [gameid], references:[id])
+  createdAt DateTime @default(now())
 }
