@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { endPoint as cacheKey, getGameData } from "@/app/lib/gamelist";
 
 
-export default function page({params}) {
+export default function Page({params}) {
   // const data = gamelist[params.id-1];
   const url = `${cacheKey}/${params.id}`
   const { isLoading, error, data } = useSWR(url, (url)=>getGameData(url));
