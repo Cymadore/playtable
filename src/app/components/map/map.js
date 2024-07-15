@@ -7,7 +7,7 @@ export default function ClubMap({ clubAddress, isMobile }) {
   useEffect(() => {
     const mapScript = document.createElement("script");
     mapScript.async = true;
-    mapScript.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jmh9c4elc1&autoload=false&submodules=geocoder&callback=InitMap`;
+    mapScript.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_API_ID}&autoload=false&submodules=geocoder&callback=InitMap`;
     document.head.appendChild(mapScript);
     const onLoadNavermap = () => {
       naverMap = naver.maps.Map;
