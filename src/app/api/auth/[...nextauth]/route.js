@@ -5,8 +5,8 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     NaverProvider({
-        clientId: process.env.NEXT_PUBLIC_NAVER_API_ID,
-        clientSecret: process.env.NEXT_PUBLIC_NAVER_API_SECRET
+        clientId: process.env.NAVER_CLIENT_ID,
+        clientSecret: process.env.NAVER_CLIENT_SECRET
       })
     // ...add more providers here
   ],
