@@ -10,6 +10,10 @@ export const authOptions = {
       })
     // ...add more providers here
   ],
+  // callbacks: {
+  //   async signIn({ user, account}) {
+  //   }
+  // }
 }
 const handler = NextAuth(authOptions) 
 export { handler as GET, handler as POST }

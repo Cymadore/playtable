@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from "react";
-import { getProviders, signIn } from "next-auth/react";
+import { signIn,signOut } from "next-auth/react";
 
 function Login() {
     return(
@@ -8,6 +8,11 @@ function Login() {
             <div>
                 <button onClick={() => signIn()}>
                     Sign In
+                </button>
+            </div>
+            <div>
+                <button onClick={() => signOut()}>
+                    Sign Out
                 </button>
             </div>
         </main>

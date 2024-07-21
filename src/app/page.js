@@ -1,6 +1,3 @@
-import Image from "next/image";
-import ResultList from "./components/home/ResultList";
-
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">

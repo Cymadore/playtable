@@ -32,3 +32,9 @@ model rental {
   gamelist gamelist @relation(fields: [gameid], references:[id])
   createdAt DateTime @default(now())
 }
+
+model user {
+  id  Int @id @unique @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+}

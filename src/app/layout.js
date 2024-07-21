@@ -19,9 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <BodyProvider>
-        <Head />
-        <MenuPop />
         <Providers>
+          <Head />
+          <MenuPop />
           <ContentsProvider>{children}</ContentsProvider>
         </Providers>
         <Footer />
