@@ -36,5 +36,8 @@ model rental {
 model user {
   id  Int @id @unique @default(autoincrement())
   name String
+  naverId String @unique
+  image String?
+  updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
