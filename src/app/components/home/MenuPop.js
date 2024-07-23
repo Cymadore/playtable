@@ -9,8 +9,8 @@ import { signIn,signOut } from "next-auth/react";
 export default function MenuPop() {
     const { isOpen, setIsOpen } = useMenuPop();
     const {data:session} = useSession();
-    console.log(session)
     let authcontent;
+
     if(session){
        authcontent= <div className="flex space-x-2 items-center" onClick={()=>signOut()}>
         <div className="w-[40px] h-[40px] overflow-hidden rounded-full ">
@@ -24,6 +24,7 @@ export default function MenuPop() {
             <span className="text-gray-100 text-2xl flex-1">로그인</span>
         </div>
     }
+    
     if(!isOpen) return;
     return(
         <div className="absolute top-0 left-0 h-full w-[300px] bg-gradient-to-b from-emerald-500 to-teal-600 z-20">
