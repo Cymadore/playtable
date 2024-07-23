@@ -22,6 +22,7 @@ model gamelist {
   rent rental[]
   faction factionlist[]
   point String
+  matches match[]
   createdAt      DateTime @default(now())
 }
 
@@ -29,6 +30,8 @@ model factionlist {
   id Int @id @default(autoincrement())
   name String
   game String
+  p1matches match[] @relation("p1Faction")
+  p2matches match[] @relation("p2Faction")
   gamelist gamelist @relation(fields: [game], references:[name])
 }
 
@@ -47,5 +50,24 @@ model user {
   naverId String @unique
   image String?
   updatedAt DateTime @updatedAt
+  p1Matches match[] @relation("player1Result")
+  p2Matches match[] @relation("player2Result")
   createdAt DateTime @default(now())
+}
+
+model match {
+  id  Int @id @unique @default(autoincrement())
+  gameId Int
+  gamelist gamelist @relation(fields:[gameId], references:[id])
+  player1 user @relation("player1Result", fields:[p1Id],references:[id])
+  p1Id Int
+  p1FactionId Int
+  p1Faction factionlist @relation("p1Faction", fields:[p1FactionId], references:[id])
+  player2 user @relation("player2Result", fields:[p2Id],references:[id])
+  p2Id Int
+  p2FactionId Int
+  p2Faction factionlist @relation("p2Faction", fields:[p2FactionId], references:[id])
+  result String
+  winnerId Int?
+  loserId Int?
 }
