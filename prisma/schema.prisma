@@ -20,8 +20,16 @@ model gamelist {
   count String
   text String
   rent rental[]
+  faction factionlist[]
   point String
   createdAt      DateTime @default(now())
+}
+
+model factionlist {
+  id Int @id @default(autoincrement())
+  name String
+  game String
+  gamelist gamelist @relation(fields: [game], references:[name])
 }
 
 model rental {
