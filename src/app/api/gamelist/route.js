@@ -1,7 +1,11 @@
 import prisma from "@/app/lib/prisma";
 
 export async function GET() {
-  const gamelist = await prisma.gamelist.findMany(); // 전부 셀렉트
+  const gamelist = await prisma.gamelist.findMany({
+    orderBy:{
+      id:"asc",
+    },
+  }); // 전부 셀렉트
   return Response.json(gamelist);
 }
 // export async function POST(req) {

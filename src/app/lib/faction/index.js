@@ -2,7 +2,9 @@ import api from "../api";
 
 export const endPoint = "/factionlist";
 
-export const getGamelist = async () => {
-  const response = await api.post(endPoint);
+export const getFactionlist = async (game) => {
+    console.log(game)
+  const response = await api.post(endPoint, {game});
+  console.log(response.data)
   return response.data;
 };
