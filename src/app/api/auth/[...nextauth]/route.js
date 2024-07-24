@@ -19,7 +19,6 @@ export const authOptions = {
           naverId: user.id,
         },
       });
-
       if(!checkUser) {
         await prisma.user.create({
           data: {
@@ -27,6 +26,16 @@ export const authOptions = {
             name: user.name,
             image: user.image,
           },
+        });
+      } else if(checkUser.name!=user.name||checkUser.image!=user.image) {
+        await prisma.user.update({
+          where: {
+            id:checkUser.id,
+          },
+          data:{
+            name:user.name,
+            image:user.image
+          }
         });
       }
       return true;
