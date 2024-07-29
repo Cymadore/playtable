@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import React,{useState, useEffect} from "react";
 import { getMatch } from "@/app/lib/result";
+import dayjs from "dayjs";
 
 
 export default function Page() {
@@ -31,17 +32,18 @@ export default function Page() {
             </div>
             <div className="flex items-center">
               <div className="flex-1 text-left">
-                <div className={`${item.result=='win'?'text-teal-700':'text-red-600'}`}>{item.result=='win'?'승리':'패배'}</div>
-                <div>{item.player1.name}</div>
-                <div>{item.p1Faction.name}</div>
+                <div className={`${item.result=='win'?'text-teal-700':'text-red-600'} text-xl font-extrabold`}>{item.result=='win'?'승리':'패배'}</div>
+                <div className="text-xl">{item.player1.name}</div>
+                <div className="text-2xl font-extrabold">{item.p1Faction.name}</div>
               </div>
               <div className="flex-1 text-center">
                 <h2 className=" text-xl font-extrabold">VS</h2>
+                <h2 className="text-lg font-bold">{dayjs(item.createdAt).format("YYYY-MM-DD")}</h2>
               </div>
               <div className="flex-1 text-right">
-                <div className={`${item.result=='win'?'text-red-600':'text-teal-700'}`}>{item.result=='lose'?'승리':'패배'}</div>
-                <div>{item.player2.name}</div>
-                <div>{item.p2Faction.name}</div>
+                <div className={`${item.result=='win'?'text-red-600':'text-teal-700'} text-xl font-extrabold`}>{item.result=='lose'?'승리':'패배'}</div>
+                <div className="text-xl">{item.player2.name}</div>
+                <div className="text-2xl font-extrabold">{item.p2Faction.name}</div>
               </div>
             </div>
           </div>
