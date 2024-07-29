@@ -2,8 +2,7 @@
 import { useSession } from "next-auth/react";
 import React,{useState, useEffect} from "react";
 import { getMatch } from "@/app/lib/result";
-import dayjs from "dayjs";
-
+import ResultCard from "@/app/components/result/ResultCard";
 
 export default function Page() {
     const { data:session } = useSession();
@@ -26,28 +25,7 @@ export default function Page() {
       result=(
         <div className="space-y-5 px-5">
         {matchlist?.map((item, index) => (
-          <div className="p-5 w-full rounded-2xl bg-gray-200 shadow-lg" key={"match"+index}>
-            <div>
-              <h1 className="text-xl font-extrabold text-center">{item.gamelist.name}</h1>
-            </div>
-            <div className="flex items-center">
-              <div className="flex-1 text-left">
-                <div className={`${item.result=='win'?'text-teal-700':'text-red-600'} text-xl font-extrabold`}>{item.result=='win'?'승리':'패배'}</div>
-                <div className="text-xl">{item.player1.name}</div>
-                <div className="text-2xl font-extrabold">{item.p1Faction.name}</div>
-              </div>
-              <div className="flex-1 text-center">
-                <h2 className=" text-xl font-extrabold">VS</h2>
-                <h2 className="text-lg font-bold">{dayjs(item.createdAt).format("YYYY-MM-DD")}</h2>
-              </div>
-              <div className="flex-1 text-right">
-                <div className={`${item.result=='win'?'text-red-600':'text-teal-700'} text-xl font-extrabold`}>{item.result=='lose'?'승리':'패배'}</div>
-                <div className="text-xl">{item.player2.name}</div>
-                <div className="text-2xl font-extrabold">{item.p2Faction.name}</div>
-              </div>
-            </div>
-          </div>
-          // <GameCard props={item} key={"game"+index} className={index % 2 == 0 && "md:mr-4"} />
+          <ResultCard props={item} key={"match"+index} />
         ))}
       </div>
       )

@@ -39,7 +39,7 @@ export default function MenuPop() {
                     <div><Link href="/" className=" text-gray-100" onClick={() => setIsOpen(false)}>홈</Link></div>
                     <div><Link href="/gamelist" className=" text-gray-100"  onClick={() => setIsOpen(false)}>플레이 하는 게임 목록</Link></div>
                     <div><Link href="/contactus" className=" text-gray-100"  onClick={() => setIsOpen(false)}>오시는길</Link></div>
-                    <div><Link href="/wip" className=" text-gray-100"  onClick={() => setIsOpen(false)}>게임 기록</Link></div>
+                    <div><Link href="/result" className=" text-gray-100"  onClick={() => setIsOpen(false)}>게임 기록</Link></div>
                 </div>
                
             </div>
