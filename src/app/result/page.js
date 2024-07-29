@@ -26,7 +26,7 @@ export default function Page() {
       result=(
         <div className="space-y-5 px-5">
         {matchlist?.map((item, index) => (
-          <div className="p-5 w-full rounded-2xl bg-gray-200 shadow-lg">
+          <div className="p-5 w-full rounded-2xl bg-gray-200 shadow-lg" key={"match"+index}>
             <div>
               <h1 className="text-xl font-extrabold text-center">{item.gamelist.name}</h1>
             </div>
