@@ -70,4 +70,5 @@ model match {
   result String
   winnerId Int?
   loserId Int?
+  createdAt DateTime @default(now())
 }
