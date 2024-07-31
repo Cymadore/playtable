@@ -49,6 +49,7 @@ model user {
   name String
   naverId String @unique
   image String?
+  point Int @default(0)
   updatedAt DateTime @updatedAt
   p1Matches match[] @relation("player1Result")
   p2Matches match[] @relation("player2Result")
