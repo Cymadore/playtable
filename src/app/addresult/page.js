@@ -1,8 +1,7 @@
 'use client';
 import { useSession } from "next-auth/react";
 import React,{useState, useEffect} from "react";
-import { getGamelist } from "@/app/lib/gamelist";
-import { getFactionlist } from "@/app/lib/faction";
+import { getResultGamelist } from "@/app/lib/gamelist";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
@@ -26,6 +25,7 @@ export default function Page() {
     const [isP2Faction, setIsP2Faction] = useState(false);
     const [p2FactionKeyword, setP2FactionKeyword] = useState("");
     const [filteredP2F, setFilteredP2F] = useState([])
+
 
 
     let gameselector
@@ -69,7 +69,8 @@ export default function Page() {
 
     useEffect(()=>{
       async function getData() {
-          const data = await getGamelist();
+          const data = await getResultGamelist();
+          console.log(data)
           setGamelist(data);
       }; 
       getData();
@@ -79,12 +80,11 @@ export default function Page() {
         if(gamelist){
             async function getData() {
                 if(!game) return;
-                const data = await getFactionlist(game.name);
-                setFactions(data);
-                setFilteredP1F(data);
+                setFactions(game.faction);
+                setFilteredP1F(game.faction);
                 setIsP1Faction(false);
                 setP1FactionKeyword('');
-                setFilteredP2F(data);
+                setFilteredP2F(game.faction);
                 setIsP2Faction(false);
                 setP2FactionKeyword('');
             }
@@ -160,6 +160,12 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div><p>게임의 결과를 선택해주세요</p></div>
+              <div className="w-full flex space-x-5">
+                <div className={`w-full flex-1 p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='win'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>setResult('win')}>승리</div>
+                <div className={`w-full flex-1 p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='draw'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>setResult('draw')}>무승부</div>
+                <div className={`w-full flex-1 p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='lose'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>setResult('lose')}>패배</div>
               </div>
             </div>
           )}
