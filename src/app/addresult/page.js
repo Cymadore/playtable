@@ -97,6 +97,7 @@ export default function Page() {
       <div className="w-full min-h-screen bg-white h-full item-center">
         <div className="w-full my-10"><h1 className="text-4xl font-extrabold text-center">게임 결과 기록</h1></div>
         <div className="w-full p-5 space-y-5">
+          <div><p className="text-xl font-extrabold text-black">기록할 게임을 선택해 주세요.</p></div>
           <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
             <div className="relative cursor-pointer">
               <h1 className="text-2xl font-extrabold" onClick={()=>setIsGame(!isGame)}>{!game?'게임을 선택하세요':game.name}</h1>
@@ -111,6 +112,7 @@ export default function Page() {
           </div>
           {game&&(
             <div className="space-y-5">
+              <div><p className="text-xl font-extrabold text-black">자신의 진영을 선택해 주세요.</p></div>
               <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
                 <div className="cursor-pointer">
                   <div className="flex space-x-2">
@@ -136,6 +138,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              <div><p className="text-xl font-extrabold text-black">상대의 진영을 선택해 주세요.</p></div>
               <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
                 <div className="cursor-pointer">
                   <div className="flex space-x-2">
@@ -161,7 +164,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <div><p>게임의 결과를 선택해주세요</p></div>
+              <div><p className="text-xl font-extrabold text-black">게임의 결과를 선택해주세요</p></div>
               <div className="w-full flex space-x-5">
                 <div className={`w-full flex-1 p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='win'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>setResult('win')}>승리</div>
                 <div className={`w-full flex-1 p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='draw'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>setResult('draw')}>무승부</div>
