@@ -7,6 +7,12 @@ export const getMatch = async () => {
   return response.data;
 };
 
+export const getUser = async (url) => {
+  console.log(url)
+  const response = await api.get(url);
+  return response.data;
+};
+
 // export const getGameData = async (url) => {
 //   const response = await api.get(url);
 //   return response.data;

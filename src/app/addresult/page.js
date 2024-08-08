@@ -4,6 +4,7 @@ import React,{useState, useEffect} from "react";
 import { getResultGamelist } from "@/app/lib/gamelist";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { getUser } from "@/app/lib/result";
 
 export default function Page() {
     const { data:session, status } = useSession();
@@ -20,11 +21,14 @@ export default function Page() {
     const [isGame, setIsGame] = useState(false);
     const [isP1Faction, setIsP1Faction] = useState(false);
     const [p1FactionKeyword, setP1FactionKeyword] = useState("");
-    const [filteredP1F, setFilteredP1F] = useState([])
+    const [filteredP1F, setFilteredP1F] = useState([]);
     
     const [isP2Faction, setIsP2Faction] = useState(false);
     const [p2FactionKeyword, setP2FactionKeyword] = useState("");
-    const [filteredP2F, setFilteredP2F] = useState([])
+    const [filteredP2F, setFilteredP2F] = useState([]);
+
+    const [userKeywrod, setUserKeyword] = useState("");
+    const [userList, setUserList] = useState([]);
 
 
 
@@ -55,6 +59,13 @@ export default function Page() {
       setIsP2Faction(false);
     }
 
+    const searchUsers = async (item) =>{
+      setUserKeyword(item);
+      console.log(item)
+      const data = await getUser(`/users/search?keyword=${item}`)
+      console.log(data)
+    }
+
     useEffect(()=>{
       setFilteredP1F(
         factions.filter(o=>o.name.includes(p1FactionKeyword))
@@ -70,7 +81,6 @@ export default function Page() {
     useEffect(()=>{
       async function getData() {
           const data = await getResultGamelist();
-          console.log(data)
           setGamelist(data);
       }; 
       getData();
@@ -97,6 +107,19 @@ export default function Page() {
       <div className="w-full min-h-screen bg-white h-full item-center">
         <div className="w-full my-10"><h1 className="text-4xl font-extrabold text-center">게임 결과 기록</h1></div>
         <div className="w-full p-5 space-y-5">
+        <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
+          <div className="relative w-full flex-1">
+            <input
+              type="text"
+              onChange={(e) => searchUsers(e.target.value)}
+              value={userKeywrod}
+              placeholder="상대 플레이어를 선택해 주세요"
+              className=" w-full rounded-lg bg-slate-100 !outline-none text-2xl indent-4 text-black"
+              onClick={()=>setIsP1Faction(!isP1Faction)}
+              // onKeyDown={handleKeyDown}
+            />
+            </div>
+        </div>
           <div><p className="text-xl font-extrabold text-black">기록할 게임을 선택해 주세요.</p></div>
           <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
             <div className="relative cursor-pointer">
