@@ -29,16 +29,17 @@ export default function Page() {
 
     const [userKeywrod, setUserKeyword] = useState("");
     const [userList, setUserList] = useState([]);
+    const [isUser, setIsUser] = useState(false);
 
-
-
-    let gameselector
     useEffect(()=> {
+      console.log(status)
+      console.log(session)
       if (status === 'unauthenticated') {
         alert('로그인이 필요한 페이지 입니다.');
         router.push('/result'); // 리디렉션할 페이지 주소로 변경
       } else if (status === 'authenticated') {
-        setP1Id(session.user)
+        setP1Id(session.user.id);
+        console.log(p1Id)
       }
     }, [status, router])
 
@@ -63,7 +64,28 @@ export default function Page() {
       setUserKeyword(item);
       console.log(item)
       const data = await getUser(`/users/search?keyword=${item}`)
-      console.log(data)
+      setUserList(data);
+      setIsUser(true);
+    }
+
+    const selectP2User = (item)=>{
+      setP2Id(item.id);
+      setUserKeyword(item.name)
+      setIsUser(false);
+    }
+
+    const applyResult =() => {
+      const resultData ={
+        gameId:game.id,
+        p1Id:p1Id,
+        p1FactionId:p1Faction.id,
+        p2Id:p2Id,
+        p2FactionId:p2Faction.id,
+        result: result,
+        winnerId: result=='win'?p1Id:result=='lose'?p2Id:'',
+        loserId: result=='win'?p2Id:result=='lose'?p1Id:''
+      }
+      console.log(resultData)
     }
 
     useEffect(()=>{
@@ -72,7 +94,7 @@ export default function Page() {
       )
     },[p1FactionKeyword])
 
-    useEffect(()=>{
+    useEffect(()=>{ 
       setFilteredP2F(
         factions.filter(o=>o.name.includes(p2FactionKeyword))
       )
@@ -118,29 +140,36 @@ export default function Page() {
               onClick={()=>setIsP1Faction(!isP1Faction)}
               // onKeyDown={handleKeyDown}
             />
-            </div>
-        </div>
-          <div><p className="text-xl font-extrabold text-black">기록할 게임을 선택해 주세요.</p></div>
-          <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
-            <div className="relative cursor-pointer">
-              <h1 className="text-2xl font-extrabold" onClick={()=>setIsGame(!isGame)}>{!game?'게임을 선택하세요':game.name}</h1>
-              {isGame&&(
-                <div className="px-5 border-black border-2 w-full max-h-[180px] bg-slate-100 absolute overflow-scroll no-scrollbar z-20">
-                  {gamelist?.map((item, index)=>(
-                    <div key={'gamelist'+index} onClick={()=>selectGame(item)}>{item.name}</div>
-                  ))}
-                </div>
-              )}
-            </div>
+            {isUser&&(
+              <div className="px-5 border-black border-2 w-full max-h-[180px] bg-slate-100 absolute overflow-scroll no-scrollbar space-y-2 z-20">
+                {userList?.map((item, index)=>(
+                  <div className="" key={'gamelist'+index} onClick={()=>selectP2User(item)}>{item.name}</div>
+                ))}
+              </div>
+            )}
           </div>
-          {game&&(
-            <div className="space-y-5">
-              <div><p className="text-xl font-extrabold text-black">자신의 진영을 선택해 주세요.</p></div>
-              <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
-                <div className="cursor-pointer">
-                  <div className="flex space-x-2">
-                    <IoSearch size={30} />
-                    <div className="relative w-full flex-1">
+        </div>
+        <div><p className="text-xl font-extrabold text-black">기록할 게임을 선택해 주세요.</p></div>
+        <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
+          <div className="relative cursor-pointer">
+            <h1 className="text-2xl font-extrabold" onClick={()=>setIsGame(!isGame)}>{!game?'게임을 선택하세요':game.name}</h1>
+            {isGame&&(
+              <div className="px-5 border-black border-2 w-full max-h-[180px] bg-slate-100 absolute overflow-scroll no-scrollbar z-20">
+                {gamelist?.map((item, index)=>(
+                  <div key={'gamelist'+index} onClick={()=>selectGame(item)}>{item.name}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        {game&&(
+          <div className="space-y-5">
+            <div><p className="text-xl font-extrabold text-black">자신의 진영을 선택해 주세요.</p></div>
+            <div className="w-full rounded-2xl p-5 bg-gray-200 shadow-lg">
+              <div className="cursor-pointer">
+                <div className="flex space-x-2">
+                  <IoSearch size={30} />
+                  <div className="relative w-full flex-1">
                     <input
                       type="text"
                       onChange={(e) => setP1FactionKeyword(e.target.value)}
@@ -195,8 +224,10 @@ export default function Page() {
               </div>
             </div>
           )}
+          <div>
+            <div className={`w-full p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='win'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>applyResult()}>등록</div>
+          </div>
         </div>
-
       </div>
     </main>
   );
