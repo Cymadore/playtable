@@ -4,7 +4,7 @@ import React,{useState, useEffect} from "react";
 import { getResultGamelist } from "@/app/lib/gamelist";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { getUser } from "@/app/lib/result";
+import { addMatch, getUser } from "@/app/lib/result";
 import _ from "lodash";
 
 export default function Page() {
@@ -31,14 +31,12 @@ export default function Page() {
     const [openSelector, setOpenSelector] = useState('');
 
     useEffect(()=> {
-      console.log(status)
-      console.log(session)
-      if (status === 'unauthenticated') {
+      if (status === 'unauthenticated'||!session.user) {
         alert('로그인이 필요한 페이지 입니다.');
         router.push('/result'); // 리디렉션할 페이지 주소로 변경
       } else if (status === 'authenticated') {
+        console.log(session)
         setP1Id(session.user.id);
-        console.log(p1Id)
       }
     }, [status, router])
 
@@ -61,7 +59,6 @@ export default function Page() {
 
     const searchUsers = async (item) =>{
       setUserKeyword(item);
-      console.log(item)
       const data = await getUser(`/users/search?keyword=${item}`)
       setUserList(data);
     }
@@ -73,6 +70,18 @@ export default function Page() {
     }
 
     const applyResult =() => {
+      let p1Points = 0;
+      let p2Points = 0;
+      if (result === 'win') {
+        p1Points = 3;
+        p2Points = 1;
+      } else if (result === 'draw') {
+        p1Points = 2;
+        p2Points = 2;
+      } else if (result === 'lose') {
+        p1Points = 1;
+        p2Points = 3;
+      }
       const resultData ={
         gameId:game.id,
         p1Id:p1Id,
@@ -81,9 +90,12 @@ export default function Page() {
         p2FactionId:p2Faction.id,
         result: result,
         winnerId: result=='win'?p1Id:result=='lose'?p2Id:'',
-        loserId: result=='win'?p2Id:result=='lose'?p1Id:''
+        loserId: result=='win'?p2Id:result=='lose'?p1Id:'',
+        p1Points: p1Points,
+        p2Points:p2Points
       }
       console.log(resultData)
+      addMatch(resultData);
     }
 
     useEffect(()=>{

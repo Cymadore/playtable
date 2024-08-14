@@ -5,8 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Rental({data}) {
   let rent;
-  console.log(data)
-  console.log(data.length)
   if (data.length) {
     rent = (
       <Swiper

@@ -9,8 +9,7 @@ import { endPoint as cacheKey, getGameData } from "@/app/lib/gamelist";
 export default function Page({params}) {
   // const data = gamelist[params.id-1];
   const url = `${cacheKey}/${params.id}`
-  const { isLoading, error, data } = useSWR(url, (url)=>getGameData(url));
-  console.log(data)
+  const { isLoading, error, data } = useSWR(url, (url)=>getGameData(url))
   if (isLoading) {
     return <div className="min-h-[1080px] bg-white"></div>;
   } else if (error) {

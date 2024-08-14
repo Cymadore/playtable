@@ -1,7 +1,6 @@
 import prisma from "@/app/lib/prisma";
 
 export async function GET(req, {params}) {
-    console.log("backend id : ",params.id)
     const id = Number(params.id);
 
   const gamedata = await prisma.gamelist.findUnique({
@@ -10,6 +9,5 @@ export async function GET(req, {params}) {
         rent:true
     }
   });
-  console.log(gamedata)
   return Response.json(gamedata);
 }

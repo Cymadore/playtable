@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 
 function Login() {
     const { data: session } = useSession();
-    console.log(session)
     return(
         <main>
             <div>

@@ -17,7 +17,6 @@ export async function GET() {
       id:"asc",
     },
   }); // 전부 셀렉트
-  console.log(gamelist)
   return Response.json(gamelist);
 }
 // export async function POST(req) {
