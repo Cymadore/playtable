@@ -18,7 +18,7 @@ export async function GET() {
 }
 export async function POST(req) {
   const res = await req.json();
-  console.log(res)
+  console.log(res.data)
   const result = await prisma.$transaction(async (tx) => {
     const match = await tx.match.create({
       data:{
@@ -31,19 +31,19 @@ export async function POST(req) {
         winnerId:res.data.winnerId,
         loserId:res.data.loserId,
       }
-    })
+    });
+    if(match){
+      await tx.user.update({
+        where:{id:res.data.p1Id},
+        data:{point:{increment:res.data.p1Points}}
+      });
+      await tx.user.update({
+        where:{id:res.data.p2Id},
+        data:{point:{increment:res.data.p2Points}}
+      });
+    }
+    console.log(match)
+    return match;
   })
-  // const shop = await prisma.shop.create({
-  //   data: {
-  //     name:res.shop.name,
-  //     images:res.shop.images,
-  //     addr:res.shop.addr,
-  //     latitude:res.shop.latitude,
-  //     longitude:res.shop.longitude,
-  //     tags:res.shop.tags,
-  //     starpoint:res.shop.starpoint,
-  //     price:res.shop.price,
-  //   },
-  // });
-  // return Response.json(shop);
+  return Response.json(result);
 }

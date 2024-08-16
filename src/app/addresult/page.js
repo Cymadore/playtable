@@ -31,14 +31,15 @@ export default function Page() {
     const [openSelector, setOpenSelector] = useState('');
 
     useEffect(()=> {
-      if (status === 'unauthenticated'||!session.user) {
+      console.log(session)
+      if (status === 'unauthenticated') {
         alert('로그인이 필요한 페이지 입니다.');
         router.push('/result'); // 리디렉션할 페이지 주소로 변경
       } else if (status === 'authenticated') {
         console.log(session)
         setP1Id(session.user.id);
       }
-    }, [status, router])
+    }, [session, status, router])
 
     const selectGame=(item)=>{
       setGame(item);
@@ -69,18 +70,28 @@ export default function Page() {
       setOpenSelector('');
     }
 
-    const applyResult =() => {
+    const checkData = () => {
+      if(!game||!p1Id||!p1Faction||!p2Id||!p2Faction||!result) return false;
+      return true;
+    }
+
+    const applyResult = async () => {
+      console.log('데이터 체크',checkData());
+      if(!checkData()) {
+        alert("입력되지 않은 데이터가 있습니다.");
+        return;
+      }
       let p1Points = 0;
       let p2Points = 0;
       if (result === 'win') {
         p1Points = 3;
-        p2Points = 1;
+        p2Points = p2Id!=0?1:0;
       } else if (result === 'draw') {
         p1Points = 2;
-        p2Points = 2;
+        p2Points = p2Id!=0?2:0;
       } else if (result === 'lose') {
         p1Points = 1;
-        p2Points = 3;
+        p2Points = p2Id!=0?3:0;
       }
       const resultData ={
         gameId:game.id,
@@ -89,13 +100,18 @@ export default function Page() {
         p2Id:p2Id,
         p2FactionId:p2Faction.id,
         result: result,
-        winnerId: result=='win'?p1Id:result=='lose'?p2Id:'',
-        loserId: result=='win'?p2Id:result=='lose'?p1Id:'',
+        winnerId: result=='win'?p1Id:result=='lose'?p2Id:null,
+        loserId: result=='win'?p2Id:result=='lose'?p1Id:null,
         p1Points: p1Points,
         p2Points:p2Points
       }
       console.log(resultData)
-      addMatch(resultData);
+      const applyResult = await addMatch(resultData);
+      console.log(applyResult);
+      if(applyResult.id) {
+        alert("등록되었습니다.");
+        router.push('/result'); 
+      }
     }
 
     useEffect(()=>{
@@ -234,7 +250,7 @@ export default function Page() {
             </div>
           )}
           <div>
-            <div className={`w-full p-5 rounded-xl text-white text-2xl font-extrabold text-center ${result=='win'?'bg-teal-500':'bg-gray-500'}`} onClick={()=>applyResult()}>등록</div>
+            <div className={`w-full p-5 rounded-xl text-white text-2xl font-extrabold text-center ${checkData?'bg-teal-500':'bg-gray-500'}`} onClick={()=>applyResult()}>등록</div>
           </div>
         </div>
       </div>

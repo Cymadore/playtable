@@ -23,7 +23,7 @@ export default function ResultCard({ props, className }) {
             <div className="flex items-center">
               <div className="flex-1 text-left">
                 <div className="max-h-[90px]">
-                    <div className={`${data.result=='win'?'text-teal-700':'text-red-600'} text-xl font-extrabold`}>{data.result=='win'?'승리':'패배'}</div>
+                    <div className={`${data.result=='win'?'text-teal-700':data.result=='lose'?'text-red-600':'text-slate-400'} text-xl font-extrabold`}>{data.result=='win'?'승리':data.result=='lose'?'패배':'무승부'}</div>
                     <div className="text-md">{data.player1.name}</div>
                     <div className="text-md font-extrabold truncate max-w-[148px] md:truncate-none md:max-w-none">{data.p1Faction.name}</div>
                 </div>
@@ -33,7 +33,7 @@ export default function ResultCard({ props, className }) {
               </div>
               <div className="flex-1 text-right">
                 <div className="max-h-[90px]">
-                    <div className={`${data.result=='win'?'text-red-600':'text-teal-700'} text-xl font-extrabold`}>{data.result=='lose'?'승리':'패배'}</div>
+                    <div className={`${data.result=='win'?'text-red-600':data.result=='lose'?'text-teal-700':'text-slate-400'} text-xl font-extrabold`}>{data.result=='lose'?'승리':data.result=='win'?'패배':'무승부'}</div>
                     <div className="text-md">{data.player2.name}</div>
                     <div className="text-md font-extrabold truncate max-w-[148px] md:truncate-none md:max-w-none">{data.p2Faction.name}</div>
                 </div>
