@@ -30,6 +30,8 @@ export default function Page() {
     
     const [openSelector, setOpenSelector] = useState('');
 
+    const [disableBtn, setDisableBtn] = useState(false);
+
     useEffect(()=> {
       console.log(session)
       if (status === 'unauthenticated') {
@@ -81,6 +83,8 @@ export default function Page() {
         alert("입력되지 않은 데이터가 있습니다.");
         return;
       }
+      if(disableBtn) return;
+      setDisableBtn(true);
       let p1Points = 0;
       let p2Points = 0;
       if (result === 'win') {
@@ -109,6 +113,7 @@ export default function Page() {
       const applyResult = await addMatch(resultData);
       console.log(applyResult);
       if(applyResult.id) {
+        setDisableBtn(false);
         alert("등록되었습니다.");
         router.push('/result'); 
       }

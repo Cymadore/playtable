@@ -62,12 +62,22 @@ export const authOptions = {
       if (token?.id) {
         const dbUser = await prisma.user.findFirst({
           where: { id: token.id },
+          include:{
+            _count: {
+              select:{
+                p1Matches:true,
+                p2Matches: true,
+              }
+            }
+          }
         });
 
         if (dbUser) {
           session.user.id = dbUser.id;
           session.user.name = dbUser.name;
           session.user.image = dbUser.image;
+          session.user.point = dbUser.point;
+          session.user.matches = dbUser._count.p1Matches+dbUser._count.p2Matches;
           // 필요에 따라 추가 데이터도 session에 포함 가능
           // session.user.role = dbUser.role;
         }

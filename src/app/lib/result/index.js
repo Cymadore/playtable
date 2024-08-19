@@ -13,10 +13,13 @@ export const getUser = async (url) => {
 };
 
 export const addMatch = async (data) => {
-  console.log(data);
   const response = await api.post(endPoint, {data});
-  console.log(response.data);
   return response.data;
+}
+
+export const matchByUser = async (userId) => {
+  const response = await api.get(`${endPoint}/${userId}`);
+  return response.data  
 }
 // export const getGameData = async (url) => {
 //   const response = await api.get(url);

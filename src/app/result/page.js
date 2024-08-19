@@ -25,7 +25,7 @@ export default function Page() {
       <h1>게임 결과가 없습니다.</h1>
     } else {
       result=(
-        <div className="space-y-5 px-5">
+        <div className="space-y-5 px-5 pb-5">
         {matchlist?.map((item, index) => (
           <ResultCard props={item} key={"match"+index} />
         ))}
