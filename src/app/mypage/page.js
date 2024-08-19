@@ -5,6 +5,7 @@ import { getGamelist } from "@/app/lib/gamelist";
 import { getFactionlist } from "@/app/lib/faction";
 import { useRouter } from "next/router";
 import { Island_Moments } from "next/font/google";
+import { IoPersonSharp } from "react-icons/io5";
 
 export default function Page() {
     const { data:session, status } = useSession();
