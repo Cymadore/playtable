@@ -28,10 +28,20 @@ export default function Page() {
       <main className="flex min-h-screen flex-col">
         <div className="w-full min-h-screen bg-white h-full item-center p-5">
           <div className="w-full p-5 border-2 rounded-2xl border-slate-500 bg-slate-200">
-            <img src={session.user.image} />
-            <div>{session.user.name}</div>
-            <div>{session.user.matches}</div>
-            <div>{session.user.point}</div>
+            <div className="flex w-full space-x-2 items-center">
+              <div className="w-[40px] h-[40px] overflow-hidden rounded-full ">
+                {session.user.image?<img src={session.user.image} className="w-full"/>:<IoPersonSharp size={40} className="text-gray-600" />}
+              </div>
+              <div>{session.user.name}</div>
+            </div>
+            <div className="flex">
+              <div>게임 횟수 : </div>
+              <div>{session.user.matches}</div>
+            </div>
+            <div className="flex">
+              <div>플레이 점수 : </div>
+              <div>{session.user.point}</div>
+            </div>
           </div>
         </div>
       </main>
