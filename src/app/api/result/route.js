@@ -42,7 +42,6 @@ export async function POST(req) {
         data:{point:{increment:res.data.p2Points}}
       });
     }
-    console.log(match)
     return match;
   })
   return Response.json(result);

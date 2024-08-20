@@ -17,8 +17,8 @@ export const addMatch = async (data) => {
   return response.data;
 }
 
-export const matchByUser = async (userId) => {
-  const response = await api.get(`${endPoint}/${userId}`);
+export const matchByUser = async (url) => {
+  const response = await api.get(url);
   return response.data  
 }
 // export const getGameData = async (url) => {
