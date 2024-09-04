@@ -9,7 +9,6 @@ import useSWRInfinite from "swr/infinite";
 
 export default function Page() {
     const { data:session } = useSession();
-    // const [matchlist, setMatchlist] = useState('');
     const getKey = (pageIndex, previousPageData) => {
       if (pageIndex === 0) return `${endPoint}?&page=1&limit=3`;
       if (!previousPageData || previousPageData.length === 0)ㄴ
@@ -26,10 +25,6 @@ export default function Page() {
         document.documentElement.scrollHeight - 10 && !isValidating
       ) {
         setSize((prevSize) => prevSize + 1);
-        console.log(size)
-        console.log('scrolltop',document.documentElement.scrollTop);
-        console.log('inner+scrolltop',window.innerHeight + document.documentElement.scrollTop);
-        console.log('scrollheight',document.documentElement.scrollHeight)
       }      
     }
     useEffect(() => {
