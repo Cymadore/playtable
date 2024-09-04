@@ -2,8 +2,9 @@ import api from "../api";
 
 export const endPoint = "/result";
 
-export const getMatch = async () => {
-  const response = await api.get(endPoint);
+export const getMatch = async (url) => {
+  console.log()
+  const response = await api.get(url);
   return response.data;
 };
 

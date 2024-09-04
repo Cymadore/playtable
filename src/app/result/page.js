@@ -1,37 +1,60 @@
 'use client';
 import { useSession } from "next-auth/react";
 import React,{useState, useEffect} from "react";
-import { getMatch } from "@/app/lib/result";
+import { getMatch, endPoint } from "@/app/lib/result";
 import ResultCard from "@/app/components/result/ResultCard";
 import { IoChevronUpOutline, IoAdd } from "react-icons/io5";
 import Link from "next/link";
+import useSWRInfinite from "swr/infinite";
 
 export default function Page() {
     const { data:session } = useSession();
-    const [matchlist, setMatchlist] = useState('');
+    // const [matchlist, setMatchlist] = useState('');
+    const getKey = (pageIndex, previousPageData) => {
+      if (pageIndex === 0) return `${endPoint}?&page=1&limit=10`;
+      if (pageIndex + 1 > +previousPageData.pages) return null;
+      return `${endPoint}?&page=${pageIndex + 1}&limit=10`;
+    };
+    const { data, isLoading, size, setSize } = useSWRInfinite(getKey, getMatch);
     const scrollToTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     let result
-    useEffect(()=>{
-        async function getData() {
-            const data = await getMatch();
-            setMatchlist(data);
-        }; 
-        getData();
+    function handleScroll() {
+      if (
+        document.documentElement.scrollTop + window.innerHeight ===
+        document.documentElement.scrollHeight
+      ) {
+        setSize(size + 1);
+      }
+      console.log(document.documentElement.scrollTop);
+  
+      // if (document.documentElement.scrollTop > 300) {
+      //   setIsVisible(true);
+      // } else {
+      //   setIsVisible(false);
+      // }
+    }
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
     }, []);
 
-    if(!matchlist){
-      <h1>게임 결과가 없습니다.</h1>
+    if(isLoading){
+      <h1>로딩중 입니다.</h1>
     } else {
+      let resultdata = data&&data.flat();
       result=(
         <div className="space-y-5 px-5 pb-5">
-        {matchlist?.map((item, index) => (
-          <ResultCard props={item} key={"match"+index} />
-        ))}
-      </div>
-      )
+          {resultdata?.map((item, index) => (
+            <ResultCard props={item} key={"match"+index} />
+          ))}
+        </div>
+    )
     }
+      
   return (
     <main className="flex min-h-screen flex-col">
       <div className="w-full min-h-screen bg-white h-full item-center">
