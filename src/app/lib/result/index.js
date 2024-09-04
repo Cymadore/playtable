@@ -20,6 +20,7 @@ export const addMatch = async (data) => {
 
 export const matchByUser = async (url) => {
   const response = await api.get(url);
+  console.log(response.data)
   return response.data  
 }
 // export const getGameData = async (url) => {

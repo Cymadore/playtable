@@ -1,34 +1,20 @@
 'use client';
 import { useSession } from "next-auth/react";
 import React,{useState, useEffect} from "react";
-import { getGamelist } from "@/app/lib/gamelist";
-import { getFactionlist } from "@/app/lib/faction";
 import { useRouter } from "next/router";
-import { Island_Moments } from "next/font/google";
 import { IoPersonSharp } from "react-icons/io5";
-import { matchByUser, endPoint } from "@/app/lib/result";
-import useSWRInfinite from "swr/infinite"
 import { signOut } from "next-auth/react";
+import MyResult from "../components/mypage/MyResult";
 export default function Page() {
     const { data:session, status } = useSession();
+    const [isLoading, setIsLoading] = useState(true);
     const router = useRouter
-    const getKey = (pageIndex, previousPageData) => {
-      if (pageIndex === 0) return `${endPoint}/${session.user?.id}?&page=1&limit=10`;
-      if (pageIndex + 1 > +previousPageData.pages) return null;
-      return `${endPoint}/${session.user?.id}?&page=${pageIndex + 1}&limit=10`;
-    };
-    // const getMatchData = async (page) => {
-    //   if(!session.user?.id) return;
-    //   let data = await matchByUser(page); //(샵id,시작 페이지)
-    //   setCtComment(data.pagination.total);
-    //   return data.data;
-    // };
-    const {data, error, isLoading, size, setSize} = useSWRInfinite(getKey, matchByUser);
     useEffect(() => {
       if (status === 'unauthenticated') {
         alert('로그인이 필요한 페이지 입니다.');
         router.push('/'); // 리디렉션할 페이지 주소로 변경
       }
+      setIsLoading(false);
     }, [status, session?.user?.id]);
     
   if(isLoading) {
@@ -55,6 +41,9 @@ export default function Page() {
             </div>
           </div>
           <div onClick={()=>signOut()}>로그아웃</div>
+          <div>
+            <MyResult userid={session.user.id} />
+          </div>
         </div>
       </main>
     );

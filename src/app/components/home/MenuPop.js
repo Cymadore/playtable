@@ -4,7 +4,7 @@ import { IoChevronBack, IoLogIn, IoPersonSharp } from "react-icons/io5";
 import Link from "next/link";
 import useMenuPop from "@/app/lib/store/menupop";
 import { SessionProvider, useSession } from "next-auth/react";
-import { signIn,signOut } from "next-auth/react";
+import { signIn, } from "next-auth/react";
 
 export default function MenuPop() {
     const { isOpen, setIsOpen } = useMenuPop();
@@ -12,7 +12,7 @@ export default function MenuPop() {
     let authcontent;
 
     if(session){
-       authcontent= <div className="flex space-x-2 items-center" onClick={()=>signOut()}>
+       authcontent= <div className="flex space-x-2 items-center">
         <div className="w-[40px] h-[40px] overflow-hidden rounded-full ">
             {session.user.image?<img src={session.user.image} className="w-full"/>:<IoPersonSharp size={40} className="text-gray-600" />}
         </div>
