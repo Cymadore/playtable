@@ -3,6 +3,7 @@ import prisma from "@/app/lib/prisma";
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
   const [page, limit] = [searchParams.get("page"), searchParams.get("limit")]
+  console.log('page : '+page+', limit : '+limit)
   const match = await prisma.match.findMany({
     orderBy:{
       id:"desc",
@@ -19,7 +20,6 @@ export async function GET(req) {
     skip: (+page - 1) * +limit,
     orderBy:{createdAt: "desc"}
   }); // 전부 셀렉트
-  console.log(match)
   return Response.json(match);
 }
 export async function POST(req) {

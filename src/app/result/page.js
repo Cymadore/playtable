@@ -11,38 +11,35 @@ export default function Page() {
     const { data:session } = useSession();
     // const [matchlist, setMatchlist] = useState('');
     const getKey = (pageIndex, previousPageData) => {
-      if (pageIndex === 0) return `${endPoint}?&page=1&limit=10`;
-      if (pageIndex + 1 > +previousPageData.pages) return null;
-      return `${endPoint}?&page=${pageIndex + 1}&limit=10`;
+      if (pageIndex === 0) return `${endPoint}?&page=1&limit=3`;
+      if (!previousPageData || previousPageData.length === 0)ㄴ
+      return `${endPoint}?&page=${pageIndex + 1}&limit=3`;
     };
-    const { data, isLoading, size, setSize } = useSWRInfinite(getKey, getMatch);
+    const { data, size, setSize, isValidating } = useSWRInfinite(getKey, getMatch);
     const scrollToTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     let result
     function handleScroll() {
       if (
-        document.documentElement.scrollTop + window.innerHeight ===
-        document.documentElement.scrollHeight
+        document.documentElement.scrollTop + window.innerHeight >=
+        document.documentElement.scrollHeight - 10 && !isValidating
       ) {
-        setSize(size + 1);
-      }
-      console.log(document.documentElement.scrollTop);
-  
-      // if (document.documentElement.scrollTop > 300) {
-      //   setIsVisible(true);
-      // } else {
-      //   setIsVisible(false);
-      // }
+        setSize((prevSize) => prevSize + 1);
+        console.log(size)
+        console.log('scrolltop',document.documentElement.scrollTop);
+        console.log('inner+scrolltop',window.innerHeight + document.documentElement.scrollTop);
+        console.log('scrollheight',document.documentElement.scrollHeight)
+      }      
     }
     useEffect(() => {
       window.addEventListener("scroll", handleScroll);
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
-    }, []);
+    }, [isValidating]);
 
-    if(isLoading){
+    if(!data){
       <h1>로딩중 입니다.</h1>
     } else {
       let resultdata = data&&data.flat();
