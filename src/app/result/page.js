@@ -10,9 +10,9 @@ import useSWRInfinite from "swr/infinite";
 export default function Page() {
     const { data:session } = useSession();
     const getKey = (pageIndex, previousPageData) => {
-      if (pageIndex === 0) return `${endPoint}?&page=1&limit=3`;
+      if (pageIndex === 0) return `${endPoint}?&page=1&limit=5`;
       if (!previousPageData || previousPageData.length === 0)ㄴ
-      return `${endPoint}?&page=${pageIndex + 1}&limit=3`;
+      return `${endPoint}?&page=${pageIndex + 1}&limit=5`;
     };
     const { data, size, setSize, isValidating } = useSWRInfinite(getKey, getMatch);
     const scrollToTop = () => {
@@ -20,9 +20,11 @@ export default function Page() {
     }
     let result
     function handleScroll() {
+      const footerHeight = 300; // 푸터 높이+추가 높이
+      const scrollPosition = document.documentElement.scrollTop + window.innerHeight;
+      const threshold = document.documentElement.scrollHeight - footerHeight;
       if (
-        document.documentElement.scrollTop + window.innerHeight >=
-        document.documentElement.scrollHeight - 10 && !isValidating
+        scrollPosition >= threshold && !isValidating
       ) {
         setSize((prevSize) => prevSize + 1);
       }      
