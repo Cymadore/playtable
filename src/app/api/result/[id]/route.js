@@ -23,7 +23,6 @@ export async function GET(req, {params}) {
     },
     take: +limit,
     skip: (+page - 1) * +limit
-  }); // 전부 셀렉트
-  console.log(match)
+  });
   return Response.json(match);
 }
