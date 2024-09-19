@@ -23,7 +23,7 @@ export default function MyResult({ userid }) {
     } else {
         let resultdata = data&&data.flat();
         result = (
-            <div className="space-y-5 px-5 pb-5">
+            <div className="space-y-5 pb-5">
                 {resultdata?.map((item, index) => (
                     <ResultCard props={item} key={"match"+index} />
                 ))}
@@ -32,7 +32,7 @@ export default function MyResult({ userid }) {
     }
     return (
         <div className="w-full min-h-screen bg-white h-full item-center">
-            <div className="w-full my-10"><h1 className="text-4xl font-extrabold text-center">게임 결과</h1></div>
+            <div className="w-full my-5"><h1 className="text-2xl font-extrabold">게임 결과</h1></div>
             {result}
         </div>
     )

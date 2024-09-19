@@ -12,12 +12,12 @@ export default function MenuPop() {
     let authcontent;
 
     if(session){
-       authcontent= <div className="flex space-x-2 items-center">
+       authcontent= <Link href="/mypage" className="flex space-x-2 items-center" >
         <div className="w-[40px] h-[40px] overflow-hidden rounded-full ">
             {session.user.image?<img src={session.user.image} className="w-full"/>:<IoPersonSharp size={40} className="text-gray-600" />}
         </div>
         <span className="text-gray-100 text-2xl flex-1">{session.user.name}</span>
-       </div>
+       </Link>
     } else {
         authcontent=<div className="flex space-x-2 items-center" onClick={() => signIn()}>
             <IoLogIn size={40} className="text-2xl text-gray-100" />
