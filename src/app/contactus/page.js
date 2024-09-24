@@ -16,8 +16,8 @@ export default function page() {
         </div>
         <h2>서울특별시 동대문구 약령시로 17길 73-2 지하층</h2>
         <div className="flex space-x-2">
-          <Link href={'https://cafe.naver.com/playtable'} className="flex-1 flex"><img src={'https://storage.cloud.google.com/playtable-photo/siteimg/icons/navercafe.png'} className="max-h-5" /><h2>네이버 카페</h2></Link>
-          <Link href={'https://open.kakao.com/o/gVnR4bAf'} className="flex-1 flex"><img src={'https://storage.cloud.google.com/playtable-photo/siteimg/icons/kakao.png'} className="max-h-5" /><h2>카카오톡 오픈채팅</h2></Link>
+          <Link href={'https://cafe.naver.com/playtable'} className="flex-1 rounded-full bg-naverGreen p-2"><h2 className="font-bold text-white text-center">네이버 카페</h2></Link>
+          <Link href={'https://open.kakao.com/o/gVnR4bAf'} className="flex-1 rounded-full bg-kakaoYellow p-2"><h2 className="font-bold text-black text-center">카카오톡 오픈채팅</h2></Link>
         </div>
         <br/>
         <h2>대중교통</h2>
