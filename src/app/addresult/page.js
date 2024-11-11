@@ -73,12 +73,18 @@ export default function Page() {
     }
 
     const checkData = () => {
-      if(!game||!p1Id||!p1Faction||!p2Id||!p2Faction||!result) return false;
+      if(!game||!p1Id||!p1Faction||(p2Id!=0&&!p2Id)||!p2Faction||!result) return false;
       return true;
     }
 
     const applyResult = async () => {
       console.log('데이터 체크',checkData());
+      console.log(game)
+      console.log(p1Id)
+      console.log(p1Faction)
+      console.log(p2Id)
+      console.log(p2Faction)
+      console.log(result)
       if(!checkData()) {
         alert("입력되지 않은 데이터가 있습니다.");
         return;
@@ -135,7 +141,11 @@ export default function Page() {
       async function getData() {
           const data = await getResultGamelist();
           setGamelist(data);
+          
       }; 
+      const userdata = searchUsers('');
+      console.log(userdata)
+      setUserList(userdata);
       getData();
     }, []);
 
@@ -165,6 +175,7 @@ export default function Page() {
               type="text"
               onChange={(e) => searchUsers(e.target.value)}
               value={userKeywrod}
+              // onBlur={()=>setOpenSelector(null)}
               placeholder="상대 플레이어를 선택해 주세요"
               className=" w-full rounded-lg bg-slate-100 !outline-none text-2xl indent-4 text-black"
               onClick={()=>setOpenSelector('user')}
